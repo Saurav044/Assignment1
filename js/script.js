@@ -8,3 +8,27 @@ const svg = d3.select('#vis')
     .attr('height', height + margin.top + margin.bottom)
     .append('g')
     .attr('transform', `translate(${margin.left},${margin.top})`);
+
+function init(){
+    d3.csv("./data/weather.csv", d => ({
+        station: d.station,
+        state: d.state,
+        latitude: +d.latitude,
+        longitude: +d.longitude,
+        elevation: +d.elevation,
+        date: d.date,
+        TMAX: +d.TMAX,
+        TMIN: +d.TMIN,
+        TAVG: +d.TAVG,
+        AWIND: +d.AWIND,
+        WDF5: +d.WDF5,
+        WSF5: +d.WSF5,
+        SNOW: +d.SNOW,
+        SNWD: +d.SNWD,
+        PRCP: +d.PRCP
+    }))
+    .then(data => {
+            allData = data
+        })
+    .catch(error => console.error('Error loading data:', error));
+}
