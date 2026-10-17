@@ -23,3 +23,5 @@ https://d3js.org/d3-zoom
 
 References:
 https://editablemaps.com/product/united-states-map/ 
+https://observablehq.com/@d3/brushable-scatterplot
+https://d3-graph-gallery.com/graph/interactivity_brush.html
