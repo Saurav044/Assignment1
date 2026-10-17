@@ -3,7 +3,7 @@ const width = 1200 - margin.left - margin.right;
 const height = 480 - margin.top - margin.bottom;
 
 let allData = [];
-const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+const colorScale = d3.scaleOrdinal(d3.schemeSet3);
 
 const svg = d3.select('#vis')
     .append('svg')
