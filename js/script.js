@@ -3,6 +3,7 @@ const width = 1200 - margin.left - margin.right;
 const height = 480 - margin.top - margin.bottom;
 
 let allData = [];
+const colorScale = d3.scaleOrdinal(d3.schemeSet3);
 
 const svg = d3.select('#vis')
     .append('svg')
@@ -57,7 +58,7 @@ function setUpPlot() {
         .attr("cx", d => projection([d.longitude, d.latitude])[0])
         .attr("cy", d => projection([d.longitude, d.latitude])[1])
         .attr("r", 3)
-        .attr("fill", "steelblue")
+        .attr("fill", d => colorScale(d.state))
         .attr("opacity", .7);
 }
 
