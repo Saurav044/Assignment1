@@ -1,6 +1,8 @@
 const margin = { top: 80, right: 60, bottom: 60, left: 100 };
 const width = 1200 - margin.left - margin.right;
-const height = 600 - margin.top - margin.bottom;
+const height = 480 - margin.top - margin.bottom;
+
+let allData = [];
 
 const svg = d3.select('#vis')
     .append('svg')
@@ -21,7 +23,7 @@ function init(){
         TMAX: +d.TMAX,
         TMIN: +d.TMIN,
         TAVG: +d.TAVG,
-        AWIND: +d.AWIND,
+        AWND: +d.AWND,
         WDF5: +d.WDF5,
         WSF5: +d.WSF5,
         SNOW: +d.SNOW,
@@ -37,7 +39,26 @@ function init(){
 }
 
 function setUpPlot() {
-    
+    const mainlandData = allData.filter(d => d.state !== 'AK' && d.state !== 'HI');
+
+    const projection = d3.geoMercator()
+        .center([-96, 38])
+        .scale(400)
+        .translate([width / 2 - 300, height / 2]);
+
+    const stations = Array.from(
+        d3.group(mainlandData, d => d.station),
+        ([key, values]) => values[0]
+    );
+
+    svg.selectAll('circle')
+        .data(stations)
+        .join('circle')
+        .attr("cx", d => projection([d.longitude, d.latitude])[0])
+        .attr("cy", d => projection([d.longitude, d.latitude])[1])
+        .attr("r", 3)
+        .attr("fill", "steelblue")
+        .attr("opacity", .7);
 }
 
 window.addEventListener('load', init);
