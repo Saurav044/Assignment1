@@ -17,7 +17,9 @@ https://d3js.org/d3-brush
 Category 2: Exploration
 
 store the station with the highest precipitation, temperature etc, when you
-Add button so when you hit next highest precipitation, it will zoom in on the point that has the highest precipitation, repeated hits will take you further down the list
+Add button so when you hit next highest precipitation, it will zoom in on the point that has the highest precipitation, 
+Lists the date and location 
+repeated hits will take you further down the list
 Add reset button so next click returns to the highest precipitation
 https://d3js.org/d3-zoom 
 
