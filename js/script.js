@@ -62,4 +62,32 @@ function setUpPlot() {
         .attr("opacity", .7);
 }
 
+// when brushing is done
+svg.call(d3.brush().on("start end", function (event){
+    console.log("brushing");
+    const projection = d3.geoMercator()
+        .center([-96, 38])
+        .scale(400)
+        .translate([width / 2 - 300, height / 2]);
+
+    // when something gets brushed, selection
+    if ((event) && (event.selection)) {
+        
+        // return all circles to normal
+        svg.selectAll('circle').attr("r", 3).attr("opacity",0.7)
+
+        selection = event.selection
+        x0 = selection[0][0]
+        y0 = selection[0][1]
+        x1 = selection[1][0]
+        y1 = selection[1][1]
+
+        // now check to see which circles lie in selection
+        svg.selectAll('circle')
+            .filter(d => x0 <= projection([d.longitude, d.latitude])[0] && projection([d.longitude, d.latitude])[0] <= x1 && y0 <= projection([d.longitude, d.latitude])[1] && projection([d.longitude, d.latitude])[1] <= y1)
+            .attr("r", 4)
+            .attr("opacity", 1)
+    }
+}));
+
 window.addEventListener('load', init);
