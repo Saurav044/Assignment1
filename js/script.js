@@ -4,6 +4,10 @@ const height = 480 - margin.top - margin.bottom;
 
 let allData = [];
 const colorScale = d3.scaleOrdinal(d3.schemeSet3);
+const projection = d3.geoMercator()
+    .center([-96, 38])
+    .scale(510)
+    .translate([width / 2 - 220, height / 2]);
 
 const svg = d3.select('#vis')
     .append('svg')
@@ -42,11 +46,6 @@ function init(){
 function setUpPlot() {
     const mainlandData = allData.filter(d => d.state !== 'AK' && d.state !== 'HI');
 
-    const projection = d3.geoMercator()
-        .center([-96, 38])
-        .scale(510)
-        .translate([width / 2 - 220, height / 2]);
-
     const stations = Array.from(
         d3.group(mainlandData, d => d.station),
         ([key, values]) => values[0]
@@ -64,13 +63,8 @@ function setUpPlot() {
 
 // when brushing is done
 svg.call(d3.brush().on("start end", function (event){
-    console.log("brushing");
-    const projection = d3.geoMercator()
-        .center([-96, 38])
-        .scale(400)
-        .translate([width / 2 - 300, height / 2]);
 
-    // when something gets brushed, selection
+    // ensure that selection and even exist
     if ((event) && (event.selection)) {
         
         // return all circles to normal
