@@ -44,8 +44,8 @@ function setUpPlot() {
 
     const projection = d3.geoMercator()
         .center([-96, 38])
-        .scale(400)
-        .translate([width / 2 - 300, height / 2]);
+        .scale(510)
+        .translate([width / 2 - 220, height / 2]);
 
     const stations = Array.from(
         d3.group(mainlandData, d => d.station),
