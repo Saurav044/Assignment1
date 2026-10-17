@@ -79,7 +79,6 @@ svg.call(d3.brush().on("start end", function (event){
         // store data averages here
         avg_tmax = 0
         avg_tmin = 0
-        avg_snow = 0
         avg_prcp = 0
         total_ct = 0
 
@@ -93,7 +92,6 @@ svg.call(d3.brush().on("start end", function (event){
         all_points.each(function(d){
             avg_tmax += d.TMAX;
             avg_tmin += d.TMIN;
-            avg_snow += d.SNOW;
             avg_prcp += d.PRCP
             total_ct += 1
         });
@@ -101,15 +99,13 @@ svg.call(d3.brush().on("start end", function (event){
         avg_tmax /= total_ct
         avg_tmin /= total_ct
         avg_prcp /= total_ct
-        avg_snow /= total_ct
 
         // display
-        if (isNaN(avg_snow) == false){
+        if (isNaN(avg_tmax) == false){
             console.log("updating stats")
             d3.select('#stats').html(`<p>Average High Temperature: ${avg_tmax}</p>
                 <p>Average Low Temperature: ${avg_tmin}</p>
-                <p>Average Precepitation: ${avg_prcp}</p>
-                <p>Average Snow: ${avg_snow}</p>`)
+                <p>Average Precipitation: ${avg_prcp}</p>`)
         }
 
 
