@@ -5,16 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 1: U.S. Weather</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/weather-extremes.css">
+    <link rel="icon" href="data:,">
 </head>
 <body>
     <div class="container">
         <h1>Assignment 1: U.S. Weather</h1>
         <p>Chosen Dataset: Daily Weather in the U.S., 2017</p>
-        <div id="vis"></div>
-        <div id="stats"></div>
+
+        <div id="precipitation-explorer" role="region" aria-label="Precipitation exploration">
+            <p class="precipitation-buttons">
+                <button type="button" id="precipitation-next" disabled>Next highest precipitation</button>
+                <button type="button" id="precipitation-reset" disabled>Reset exploration</button>
+            </p>
+            <p id="precipitation-status" role="status" aria-live="polite">Loading weather data…</p>
+            <div id="precipitation-details" hidden>
+                <p><strong>Station:</strong> <span id="precipitation-station">—</span></p>
+                <p><strong>Location:</strong> <span id="precipitation-coordinates">—</span></p>
+                <p><strong>Date:</strong> <span id="precipitation-date">—</span></p>
+                <p><strong>Daily precipitation:</strong> <span id="precipitation-amount">—</span></p>
+                <p><strong>Rank:</strong> <span id="precipitation-rank">—</span></p>
+            </div>
+        </div>
+
+        <p class="map-instructions">Drag across station dots and release to see averages. The orange ring marks the station selected by the precipitation button.</p>
+        <div id="vis" aria-busy="true"></div>
+        <div id="stats" role="status">Select stations on the map to see their weather averages.</div>
     </div>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/weather-extremes.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,29 @@
+/* Minimal additions to the team's original page styling. */
+#precipitation-explorer { margin: 1rem 0; }
+
+#precipitation-explorer button {
+    margin: 0 6px 6px 0;
+    padding: 4px 9px;
+    cursor: pointer;
+}
+
+#precipitation-explorer button:disabled { cursor: default; }
+#precipitation-explorer button:focus-visible { outline: 2px solid steelblue; outline-offset: 2px; }
+#precipitation-status { color: #555; font-size: .9rem; }
+#precipitation-details { margin-top: .5rem; }
+#precipitation-details[hidden] { display: none; }
+.map-instructions { font-size: .9rem; }
+
+/* Use the original image, sized to the original 800px page instead of clipping. */
+#vis svg { display: block; box-sizing: border-box; width: 100%; height: auto; }
+#vis .basemap { pointer-events: none; }
+#vis .station-dot { vector-effect: non-scaling-stroke; }
+#vis .station-dot.precipitation-active { stroke: #963c05; stroke-width: 2px; }
+#vis .precipitation-focus-ring {
+    fill: none;
+    stroke: #d85c0b;
+    stroke-width: 2px;
+    vector-effect: non-scaling-stroke;
+    pointer-events: none;
+}
+
