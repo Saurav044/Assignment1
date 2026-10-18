@@ -31,6 +31,57 @@
         <p class="map-instructions">Drag across station dots and release to see averages. The orange ring marks the station selected by the precipitation button.</p>
         <div id="vis" aria-busy="true"></div>
         <div id="stats" role="status">Select stations on the map to see their weather averages.</div>
+        
+        <br>
+        <h1>WRITEUP</h1>
+        <div id="writeup"> 
+            <b>INTRO:</b>
+            <p>Our team decided to use the provided daily weather dataset 
+                (<b>Daily Weather in the U.S., 2017)</b>. Each entry is a collection 
+                of weather related statistics on a given date taken by a specific 
+                weather station such as windspeed, temperature, etc, information 
+                about the station such as its location and the date of the measurements.
+            </p>
+            <b>RATIONALE:</b>
+            <p>We decided to use state, PRCP, latitude, longitude, TMIN, TMAX as the main 
+                features of interest to create our visualization because we wanted to 
+                analyze how geographic region affects average precipitation, average
+                 daily low temperature and average daily high temperature.
+            </p>
+            <b>IMPLEMENTED FEATURES: </b>
+            <ul>
+                <li>Category One: Brushing and linking</li>
+                <li>Category Two: Panning and Zooming/Highlighting</li>
+            </ul>
+            <b>DESIGN DECISIONS:</b>
+            <p>We converted each station to a point and assigned the location of each point by applying a Mercator projection to the latitude and longitude. The result is a collection of points that approximate the continental United States in appearance as a whole. This was to visualize the geographic location of each station, which is a major factor in the type of weather that occurs. 
+</p>
+            <p>Multiple different ways to group points were considered, such as getting statistics from a state or a defined region (i.e., East Coast). However, we decided that it would be more interesting for the user to have freedom to select their own grouping because statistics from a state or defined region are easy to find online and readily available. So we decided to use brushing to give the user the ability to select points via interaction and discover new patterns in the data. After an area selection is created via brushing, we then iterate through all the points/stations selected and calculate the average weather statistics. This is an approximation for the yearly average of the region selected. The reported statistics are precipitation, minimum temperature and maximum temperature. We initially included snow, but given that the data spans a whole year (2017), it made little sense to include average daily snow fall given that there is no snow fall most of the year in the US. 
+</p>
+            <p>To improve user experience and have an intuitive interface, we decided to overlay the points over a Mercator projection of the United States so that users would be able to match points to states more easily. The points are colored in a way to correspond to the state, but we believed that users would be more familiar with a map of the United States and it would be helpful to help them orient themselves, especially in regions with less weather stations. A goal was to highlight that stations belonged to different states, so we decided to give each state a unique color. However, we decided not to include a key of color-to-state encoding because there are 48 states in the continental United States and that would have been difficult for users to understand.
+</p>
+            <p>We decided to only make use of entries located in the continental United States because we were using a Mercator projection function to map latitude and longitude to coordinates. Otherwise, states and territories that are not part of the continental United States would not fit in the graphic and we’d lose the compact design of our visualization.
+</p>
+            <p>Another design decision made was to have a mark per station but still store all the data associated with each station in order to calculate the average weather statistics as opposed to making a mark for each entry. This was to improve performance given the number of entries in the dataset while still retaining an appealing and simple visual representation on the map.
+            </p>
+            <b>DEVELOPMENT PROCESS:</b>
+            <p>John Du: Outlined design for visualization (30 minutes), implemented brushing with stat reporting  (~1.5 hours), wrote write up (~1 hour).</p>
+            <p>Saurav Pandey: Created the zoom-in on the top 100 highest precipitation stations feature (2 hrs), deployed visualization to webpage (30 minutes), made demo video (30 min).</p>
+            <p>Manny Nakatani: Set up the basic HTML structure of the website and developed the core functionality for the weather visualization. Implemented the init() function to load and process weather data from a CSV file. Developed the setUpPlot() function to filter and organize weather station data and display the stations on the map. (~5 hours).</p>
+            <br>
+            <p>In total, implementation of the interactions took less time than the initialization of the visualization. Compared to non-programming time (~2.5 hours), programming time took a large majority of people-hours (~8.5 hours). In total, ~11 people-hours were spent.</p>
+            <b>AI Usage:</b>
+            <p>John Du: No usage <br>
+            Saurav Pandey: Used ChatGPT to accurately match the station coordinates to the map image we imported <br>
+            Manny Nakatani: Used ChatGPT to search up syntax and learn about d3-geo.
+            </p>
+            <b>CITATIONS:</b>
+            <p>https://editablemaps.com/product/united-states-map/ <br>
+https://observablehq.com/@d3/brushable-scatterplot <br>
+https://d3-graph-gallery.com/graph/interactivity_brush.html <br>
+https://editablemaps.com/product/united-states-map/   
+</p>
+        </div>
     </div>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
