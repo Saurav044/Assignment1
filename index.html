@@ -39,7 +39,7 @@
             <p>Our team decided to use the provided daily weather dataset 
                 (<b>Daily Weather in the U.S., 2017)</b>. Each entry is a collection 
                 of weather related statistics on a given date taken by a specific 
-                weather station such as windspeed, temperature, etc, information 
+                weather station such as windspeed, temperature, etc and information 
                 about the station such as its location and the date of the measurements.
             </p>
             <b>RATIONALE:</b>
@@ -54,7 +54,7 @@
                 <li>Category Two: Panning and Zooming/Highlighting</li>
             </ul>
             <b>DESIGN DECISIONS:</b>
-            <p>We converted each station to a point and assigned the location of each point by applying a Mercator projection to the latitude and longitude. The result is a collection of points that approximate the continental United States in appearance as a whole. This was to visualize the geographic location of each station, which is a major factor in the type of weather that occurs. 
+            <p>We converted each station to a point and assigned the location of each point by applying a Mercator projection to the latitude and longitude. The result is a collection of points that approximate the continental United States in appearance as a whole. This was to visualize the geographic location of each station, which is a major factor in determining the type of weather that occurs. 
 </p>
             <p>Multiple different ways to group points were considered, such as getting statistics from a state or a defined region (i.e., East Coast). However, we decided that it would be more interesting for the user to have freedom to select their own grouping because statistics from a state or defined region are easy to find online and readily available. So we decided to use brushing to give the user the ability to select points via interaction and discover new patterns in the data. After an area selection is created via brushing, we then iterate through all the points/stations selected and calculate the average weather statistics. This is an approximation for the yearly average of the region selected. The reported statistics are precipitation, minimum temperature and maximum temperature. We initially included snow, but given that the data spans a whole year (2017), it made little sense to include average daily snow fall given that there is no snow fall most of the year in the US. 
 </p>
